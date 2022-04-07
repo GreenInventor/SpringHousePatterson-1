@@ -9,17 +9,16 @@
 	<form>
 		<table>
 			<tr th:each="currentHouse : ${homes}">
-				<td th:text="${currentHouse.id}" />
-					<td>Bedrooms:<p th:text="${currentHouse.bedrooms}"/></td>
-					<td>Bathrooms:<p th:text="${currentHouse.bathrooms}"/></td>
-					<td>Garages:<p th:text="${currentHouse.garages}"/></td>
-					<td>SQFT:<p th:text="${currentHouse.sqft}"/></td>
-					<td>Acres:<p th:text="${currentHouse.acres}"/></td>
-					<td>Price: ($)<p th:text="${currentHouse.price}"/></td>
-					<td>Location:<p th:text="${currentHouse.location}"/></td>
-					<td>Agent:<p th:text="${currentHouse.agent}"/></td>
-					<td><a th:href="@{/edit/{id}(id=${currentHouse.id})}">Edit</a></td>
-					<td><a th:href="@{/delete/{id}(id=${currentHouse.id})}">Delete</a></td>
+				<td>Address:<p th:text="${currentHouse.location}"/></td>
+				<td>Price: ($)<p th:text="${currentHouse.price}"/></td>
+				<td>Bedrooms:<p th:text="${currentHouse.bedrooms}"/></td>
+				<td>Bathrooms:<p th:text="${currentHouse.bathrooms}"/></td>
+				<td>Garages:<p th:text="${currentHouse.garages}"/></td>
+				<td>SQFT:<p th:text="${currentHouse.sqft}"/></td>
+				<td>Acres:<p th:text="${currentHouse.acres}"/></td>
+				<td>Agent:<p th:text="${currentHouse.agent}"/></td>
+				<td><a th:href="@{/edit/{id}(id=${currentHouse.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${currentHouse.id})}">Delete</a></td>
 			</tr>
 		</table>
 	</form>

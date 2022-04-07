@@ -6,16 +6,84 @@
 </head>
 <body>
 	<h1>Add New Listing</h1>
-	<form th:object="${newHouse}" th:action="@{/update/{id}(id=${newHouse.id})}" method="post">
-		Bedrooms: <input name="bedrooms" size="20" th:field="*{bedrooms}"><br />
-		Bathrooms: <input name="bathrooms" size="20" th:field="*{bathrooms}"><br />
-		Garages: <input name="garages" size="20" th:field="*{garages}"><br />
-		SqFt: <input name="sqft" size="20" th:field="*{sqft}"><br />
-		Acres: <input name="acres" size="20" th:field="*{acres}"><br />
-		Price: <input name="price" size="20" th:field="*{price}"><br />
-		Location: <input name="location" size="20" th:field="*{location}"><br />
-		Agent: <input name="agent" size="20" th:field="*{agent}"><br />
+	<script>
+		function checkForm(form)
+		{
+			let re = /^[\w ]+$/;
+			
+			if(form.location.value == "")
+			{
+				alert("Please enter an address.");
+				form.location.focus();
+				return false;
+			}
+			if(!re.test(form.location.value))
+			{
+				alert("Address contains invalid characters.");
+				return false;
+			}
+			if(form.price.value <= 0)
+			{
+				alert("Please enter a value greater than 0 for price.");
+				form.price.focus();
+				return false;
+			}
+			if(form.bedrooms.value <= 0)
+			{
+				alert("Please enter a value greater than 0 for bedrooms.");
+				form.bedrooms.focus();
+				return false;
+			}
+			if(form.bathrooms.value <= 0)
+			{
+				alert("Please enter a value greater than 0 for bathrooms.");
+				form.bathrooms.focus();
+				return false;
+			}
+			if(form.garages.value < 0)
+			{
+				alert("Please enter a value greater than or equal to 0 for garages.");
+				form.garages.focus();
+				return false;
+			}
+			if(form.sqft.value <= 0)
+			{
+				alert("Please enter a value greater than 0 for SqFt.");
+				form.sqft.focus();
+				return false;
+			}
+			if(form.acres.value <= 0)
+			{
+				alert("Please enter a value greater than 0 for acres.");
+				form.acres.focus();
+				return false;
+			}
+			if(form.agent.value == "")
+			{
+				alert("Please enter an agent.");
+				form.agent.focus();
+				return false;
+			}
+			if(!re.test(form.agent.value))
+			{
+				alert("Agent contains invalid characters.");
+				return false;
+			}
+			
+			return true;
+		}
+	</script>
+	<form th:object="${newHouse}" th:action="@{/update/{id}(id=${newHouse.id})}" method="post" onsubmit="return checkForm(this);">
+		Address: <input name="location" type="text" th:field="*{location}"><br />
+		Price: <input name="price" type="number" th:field="*{price}"><br />
+		Bedrooms: <input name="bedrooms" type="number" th:field="*{bedrooms}"><br />
+		Bathrooms: <input name="bathrooms" type="number" th:field="*{bathrooms}"><br />
+		Garages: <input name="garages" type="number" th:field="*{garages}"><br />
+		SqFt: <input name="sqft" type="number" th:field="*{sqft}"><br />
+		Acres: <input name="acres" type="number" th:field="*{acres}"><br />
+		Agent: <input name="agent" type="text" th:field="*{agent}"><br />
 		<input name="submit" type="submit" value="submit" />
+		<input name="reset" type="reset" value="reset" />
 	</form>
 	<a href="../viewAll">View all Listings</a>
 </body>
